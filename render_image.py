@@ -19,12 +19,6 @@ for i, pixel_color in enumerate(img.getdata()):
     x = clamp(start_pos[0] + (i % width), 0, 199)
     y = clamp(start_pos[1] + (i // width), 0, 199)
 
-    # print(pixel_color)
     # Pixel information in JSON format.
     pixel = {'x': x, 'y': y, 'color': pixel_color, 'key': 'NDYQMNCY' }
     response = requests.post(url, headers=headers, data=json.dumps(pixel))
-
-    if response.ok:
-        print("Success!", response.content.decode())
-    else:
-        print("Error!", response.content.decode())
